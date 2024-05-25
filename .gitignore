@@ -1,0 +1,19 @@
+### Python ###
+# Byte-compiled / optimized / DLL files
+__pycache__/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# mypy
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pycharm
+.idea/
+
