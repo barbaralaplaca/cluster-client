@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cluster-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cluster-client
+  template:
+    metadata:
+      labels:
+        app: cluster-client
+    spec:
+      containers:
+      - name: cluster-client
+        image: your-dockerhub-username/cluster-client:latest
+        args: ["action", "group-id"]  # Command-line arguments
+        env:
+        - name: HOSTS
+          value: "node1,node2,node3"
+        - name: BASE_URL
+          value: ".example.com"
