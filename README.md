@@ -20,11 +20,11 @@ This client module interacts with a cluster of nodes to create and delete object
 ## Development
 1. Create a virtual environment `python3 -m venv .venv` and activate it `. .venv/bin/activate`.
 2. Install dependencies: `pip install -r requirements.txt`
-3. Run tests: `python -m pytest`
-4. Run pylint: `pylint client_module`
+3. To run the tests: `python -m pytest`
+4. To run pylint: `pylint client_module`
 5. To run the container locally: `docker build -t cluster-client . && docker run cluster-client <action> <group-id>`. `<action>` should be replaced with `create` or `delete`.
 
 ## Usage
 1. In `manifests/deployment.yaml`, first update the container image value, following by updating the container arguments and environment variables with the right values.
-2. The environment variable `HOSTS` should be a string separating the values by comma without spaces. e.g. "node1,node2,node3".
+2. The environment variable `HOSTS` should be a comma-separated string without spaces, e.g., "node1,node2,node3".
 3. Run `kubectl apply -f manifests/deployment.yaml`
