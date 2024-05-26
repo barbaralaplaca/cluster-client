@@ -90,6 +90,7 @@ class ClusterClient:
             logging.info(f"Failed in creating {group_id} for {self._nodes}. Successfully rolled back.")
         else:
             logging.error(f"Failed in creating {group_id} for {self._nodes}. Rollback failed for nodes {nodes}")
+            raise RuntimeError
 
     def _delete_group_rollback(self, nodes: list[str], group_id: str) -> None:
         logging.info(f"Rollback: creating group id {group_id} for nodes: {nodes}")
@@ -107,3 +108,4 @@ class ClusterClient:
             logging.info(f"Failed in deleting {group_id} for {self._nodes}. Successfully rolled back.")
         else:
             logging.error(f"Failed in deleting {group_id} for {self._nodes}. Rollback failed for nodes {nodes}")
+            raise RuntimeError
