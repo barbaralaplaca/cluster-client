@@ -26,4 +26,5 @@ This client module interacts with a cluster of nodes to create and delete object
 
 ## Usage
 1. In `manifests/deployment.yaml`, first update the container image value, following by updating the container arguments and environment variables with the right values.
-2. Run `kubectl apply -f manifests/deployment.yaml`
+2. The environment variable `HOSTS` should be a string separating the values by comma without spaces. e.g. "node1,node2,node3".
+3. Run `kubectl apply -f manifests/deployment.yaml`

@@ -12,19 +12,22 @@ from client_module.src.services.requests_client.requests_schema import ResponseS
 class TestClusterClient:
     @pytest.fixture(autouse=True)
     def _prepare_test(self) -> None:
-        self._nodes = ["node1", "node2", "node3"]
-        self._base_url = "example.com"
-        self._client_request = Mock()
-        self._cluster_client = ClusterClient(self._base_url, self._nodes, self._client_request)
+        self._nodes = ["node1", "node2", "node3"]  # pylint: disable=W0201  # for tests purpose
+        self._base_url = "example.com"  # pylint: disable=W0201  # for tests purpose
+        self._client_request = Mock()  # pylint: disable=W0201  # for tests purpose
+        self._cluster_client = ClusterClient(self._base_url, self._nodes, self._client_request)  # pylint: disable=W0201  # for tests purpose
 
     def test_create_group_happy_path(self) -> None:
         # Group successfully created for all nodes
         self._client_request.post.return_value = ResponseSchema(status_code=HTTPStatus.CREATED)
         self._cluster_client.create_group("test_group")
 
-        self._client_request.post.assert_called()  # Ensure the POST request was made
-        self._client_request._validate_group_id.assert_not_called()  # Assert that _validate_group_id was not called
-        self._client_request._create_group_rollback.assert_not_called()  # Ensure rollback was not called
+        # Ensure the POST request was made
+        self._client_request.post.assert_called()
+        # Assert that _validate_group_id was not called
+        self._client_request._validate_group_id.assert_not_called()  # pylint: disable=W0212  # for tests purpose
+        # Ensure rollback was not called
+        self._client_request._create_group_rollback.assert_not_called()  # pylint: disable=W0212  # for tests purpose
 
     @patch.object(ClusterClient, "_create_group_rollback")
     @patch.object(ClusterClient, "_validate_group_id")
@@ -49,9 +52,12 @@ class TestClusterClient:
         self._client_request.delete.return_value = ResponseSchema(status_code=HTTPStatus.OK)
         self._cluster_client.delete_group("test_group")
 
-        self._client_request.delete.assert_called()  # Ensure the POST request was made
-        self._client_request._validate_group_id.assert_not_called()  # Assert that _validate_group_id was not called
-        self._client_request._delete_group_rollback.assert_not_called()  # Ensure rollback was not called
+        # Ensure the POST request was made
+        self._client_request.delete.assert_called()
+        # Assert that _validate_group_id was not called
+        self._client_request._validate_group_id.assert_not_called()  # pylint: disable=W0212  # for tests purpose
+        # Ensure rollback was not called
+        self._client_request._delete_group_rollback.assert_not_called()  # pylint: disable=W0212  # for tests purpose
 
     @patch.object(ClusterClient, "_delete_group_rollback")
     @patch.object(ClusterClient, "_validate_group_id")
@@ -88,6 +94,6 @@ class TestClusterClient:
     @patch.object(ClusterClient, "get_group")
     def test_validate_group_id(self, mock_get_group: Mock, group_response: dict | None, group_exists: bool) -> None:
         mock_get_group.return_value = group_response
-        result = self._cluster_client._validate_group_id("node1", "test_group")
+        result = self._cluster_client._validate_group_id("node1", "test_group")  # pylint: disable=W0212  # for tests purpose
 
         assert result == group_exists

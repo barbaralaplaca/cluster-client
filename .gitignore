@@ -1,6 +1,9 @@
 ### Python ###
 # Byte-compiled / optimized / DLL files
 __pycache__/
+*.pyc
+*.py[cod]
+*$py.class
 
 # Environments
 .env
@@ -8,11 +11,6 @@ __pycache__/
 env/
 venv/
 ENV/
-
-# mypy
-.mypy_cache/
-.dmypy.json
-dmypy.json
 
 # Pycharm
 .idea/

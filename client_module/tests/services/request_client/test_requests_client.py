@@ -10,7 +10,7 @@ from client_module.src.services.requests_client.requests_schema import ResponseS
 class TestRequestsClient:
     @pytest.fixture(autouse=True)
     def _prepare_test(self):
-        self._client = RequestsClient()
+        self._client = RequestsClient()  # pylint: disable=W0201  # for tests purpose
 
     def test_post(self, httpx_mock: HTTPXMock):
         url = "https://test/url"

@@ -28,8 +28,8 @@ class ClusterClient:
             # Rollback
             else:
                 logging.warning(
-                    f"Failed to create {group_id} for {node}. {group_id} not found in {node}. \
-                    Rolling back creation of nodes {successful_requests}."
+                    f"Failed to create {group_id} for {node}: {response.status_code}: {response.data}. \
+                    {group_id} not found in {node}. Rolling back creation of nodes {successful_requests}."
                 )
                 self._create_group_rollback(successful_requests, group_id)
                 break
@@ -53,7 +53,8 @@ class ClusterClient:
             # Rollback
             else:
                 logging.warning(
-                    f"Failed to delete {group_id} for {node}. Rolling back deletion of nodes {successful_requests}."
+                    f"Failed to delete {group_id} for {node}: {response.status_code}: {response.data}. \
+                    Rolling back deletion of nodes {successful_requests}."
                 )
                 self._delete_group_rollback(successful_requests, group_id)
                 break

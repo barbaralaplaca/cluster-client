@@ -6,7 +6,7 @@ disable =
     C0115,  # Missing class docstring (missing-class-docstring)
     C0116,  # Missing function or method docstring (missing-function-docstring)
     W1203,  # Use lazy % formatting in logging functions (logging-fstring-interpolation)
-
+    W0621,  # Redefining name 'group_id' from outer scope
 
 # Analyse import fallback blocks. This can be used to support both Python 2 and
 # 3 compatible code, which means that the block might have code that exists
