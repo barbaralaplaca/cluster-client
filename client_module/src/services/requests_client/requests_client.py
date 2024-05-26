@@ -14,6 +14,7 @@ class RequestsClient:
             response.raise_for_status()
             return ResponseSchema(status_code=HTTPStatus(response.status_code))
         except httpx.HTTPStatusError as e:
+            logging.warning(f"Error occurred when requesting 'post'-{url}-{data}: {e}")
             return ResponseSchema(status_code=HTTPStatus(e.response.status_code))
         except Exception as e:  # pylint: disable=W0718
             logging.warning(f"Error occurred when requesting 'post'-{url}-{data}: {e}")
@@ -27,6 +28,7 @@ class RequestsClient:
             response.raise_for_status()
             return ResponseSchema(status_code=HTTPStatus(response.status_code))
         except httpx.HTTPStatusError as e:
+            logging.warning(f"Error occurred when requesting 'delete'-{url}-{data}: {e}")
             return ResponseSchema(status_code=HTTPStatus(e.response.status_code))
         except Exception as e:  # pylint: disable=W0718
             logging.warning(f"Error occurred when requesting 'delete'-{url}-{data}: {e}")
@@ -39,6 +41,7 @@ class RequestsClient:
             response.raise_for_status()
             return ResponseSchema(status_code=HTTPStatus(response.status_code), data=response.json())
         except httpx.HTTPStatusError as e:
+            logging.warning(f"Error occurred when requesting 'get'-{url}: {e}")
             return ResponseSchema(status_code=HTTPStatus(e.response.status_code))
         except Exception as e:  # pylint: disable=W0718
             logging.warning(f"Error occurred when requesting 'get'-{url}: {e}")

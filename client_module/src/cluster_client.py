@@ -68,8 +68,8 @@ class ClusterClient:
         return response.data
 
     def _validate_group_id(self, node: str, group_id: str) -> bool:
-        response = self.get_group(node, group_id)
-        if isinstance(response, dict) and response.get("groupId"):
+        body = self.get_group(node, group_id)
+        if isinstance(body, dict) and body.get("groupId"):
             return True
 
         return False
