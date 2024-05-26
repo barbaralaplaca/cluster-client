@@ -14,10 +14,10 @@ spec:
     spec:
       containers:
       - name: cluster-client
-        image: your-dockerhub-username/cluster-client:latest
-        args: ["action", "group-id"]  # Command-line arguments
+        image: your-dockerhub-username/cluster-client:latest  # Replace dockerhub username
+        args: ["action", "group-id"]  # Replace with right values
         env:
         - name: HOSTS
-          value: "node1,node2,node3"
+          value: "node1,node2,node3"  # Replace with right values
         - name: BASE_URL
-          value: ".example.com"
+          value: ".example.com"  # Replace with right values
